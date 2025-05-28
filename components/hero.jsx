@@ -25,13 +25,17 @@ const HeroSection = () => {
                     </Button>
                 </Link>
             </div>
-            <div className='hero-image-wrapper'>
-                <div className='hero-image'>
-                    <Image src="/banner.jpeg" width={1280} height={720}
-                    alt="Dashboard Image"
-                    className='rounded-lg shadow-2xl border mx-auto'
-                    priority/>
-                </div>
+            <div className='flex justify-center mt-10'>
+              <div className='hero-image-wrapper rounded-3xl shadow-2xl border-4 border-white dark:border-gray-800 overflow-hidden transform transition-transform duration-500 hover:scale-105 bg-white/70 dark:bg-black/40 backdrop-blur-lg max-w-3xl w-full'>
+                <Image 
+                  src="/banner3.jpg" 
+                  width={900} 
+                  height={600}
+                  alt="Finance Dashboard Illustration"
+                  className='w-full h-auto object-cover rounded-3xl transition-transform duration-700 ease-in-out scale-100 hover:scale-105' 
+                  priority
+                />
+              </div>
             </div>
         </div>
     </div>
