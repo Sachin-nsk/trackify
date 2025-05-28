@@ -73,9 +73,12 @@ export default function Home() {
 
     <section className="py-20">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
-            What Our Users Say
+          <h2 className="text-3xl font-bold text-center mb-2">
+            About This Project
           </h2>
+          <p className="text-center text-sm text-gray-500 mb-10">
+            The following notes describe the purpose and scope of this prototype.
+          </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {testimonialsData.map((testimonial, index)=>(
               <Card key={index} className="p-6">

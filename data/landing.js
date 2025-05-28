@@ -10,22 +10,23 @@ import {
 // Stats Data
 export const statsData = [
   {
-    value: "50K+",
-    label: "Active Users",
+    value: "Prototype",
+    label: "Stage",
   },
   {
-    value: "$2B+",
-    label: "Transactions Tracked",
+    value: "Demo Only",
+    label: "Usage Stats",
   },
   {
-    value: "99.9%",
-    label: "Uptime",
+    value: "100%",
+    label: "Dev Uptime",
   },
   {
-    value: "4.9/5",
-    label: "User Rating",
+    value: "Personal Project",
+    label: "Status",
   },
 ];
+
 
 // Features Data
 export const featuresData = [
@@ -88,24 +89,24 @@ export const howItWorksData = [
 // Testimonials Data
 export const testimonialsData = [
   {
-    name: "Sarah Johnson",
-    role: "Small Business Owner",
-    image: "https://randomuser.me/api/portraits/women/75.jpg",
+    name: "Note",
+    role: "Disclaimer",
+    image: "https://cdn-icons-png.flaticon.com/512/1828/1828665.png", 
     quote:
-      "Welth has transformed how I manage my business finances. The AI insights have helped me identify cost-saving opportunities I never knew existed.",
+      "This project is a personal prototype developed to showcase technical skills in React, UX, and API integration. All feedback and data shown are simulated for demonstration only.",
   },
   {
-    name: "Michael Chen",
-    role: "Freelancer",
-    image: "https://randomuser.me/api/portraits/men/75.jpg",
+    name: "Project Goal",
+    role: "Developer Note",
+    image: "https://cdn-icons-png.flaticon.com/512/2922/2922510.png", 
     quote:
-      "The receipt scanning feature saves me hours each month. Now I can focus on my work instead of manual data entry and expense tracking.",
+      "Trackify is designed to explore the application of AI-driven financial tools, featuring analytics, budget planning, and multi-currency support as core concepts.",
   },
   {
-    name: "Emily Rodriguez",
-    role: "Financial Advisor",
-    image: "https://randomuser.me/api/portraits/women/74.jpg",
+    name: "Built With",
+    role: "Tech Stack",
+    image: "https://cdn-icons-png.flaticon.com/512/919/919851.png",
     quote:
-      "I recommend Welth to all my clients. The multi-currency support and detailed analytics make it perfect for international investors.",
+      "This app was built using React, Lucide icons, Tailwind CSS, and sample JSON data. APIs and backend features can be plugged in for full functionality.",
   },
 ];
