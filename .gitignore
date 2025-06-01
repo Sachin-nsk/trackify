@@ -42,3 +42,5 @@ next-env.d.ts
 
 # For warning - LF will be replaced by CRLF
 * text=auto
+
+/lib/generated/prisma
