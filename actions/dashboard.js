@@ -1,6 +1,6 @@
-"user server";
+"use server";
 
-import auth from "@clerk/nextjs/server";
+import {auth} from "@clerk/nextjs/server";
 import { db } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
 
@@ -10,6 +10,12 @@ const serializeTransaction = (obj)=>{
     if(obj.balance){
         serialized.balance = obj.balance.toNumber();
     }
+
+    if(obj.amount){
+        serialized.amount = obj.amount.toNumber();
+    }
+
+    return serialized;
 
 };
 

@@ -1,6 +1,6 @@
 "use client";
 
-import React from 'react'
+import  {React,  useEffect } from 'react'
 import { Drawer, DrawerTrigger, DrawerContent, DrawerHeader, DrawerTitle, DrawerClose } from './drawer';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -10,7 +10,10 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/components/ui/select"
 import {Switch} from "@/components/ui/switch"
 import {Button} from "@/components/ui/button"
-
+import {useFetch} from '@/hooks/use-fetch';
+import { toast } from 'sonner';
+import { createAccount } from '@/actions/dashboard';
+import { Loader2 } from 'lucide-react';
 
 
 const CreateAccountDrawer = ({children}) => {
@@ -31,8 +34,29 @@ const CreateAccountDrawer = ({children}) => {
       },
     });
 
+    const {
+      data: newAccount,
+      error,
+      fn: createAccountFn,
+      loading: createAccountLoading,
+    } = useFetch(createAccount);
+
+    useEffect(() => {
+      if(newAccount ){
+        toast.success("Account created successfully");
+        reset();
+        setOpen(false);
+      }
+    }, [newAccount, reset]);
+
+    useEffect(() => {
+      if(error) {
+        toast.error(error.message || "Failed to create account");
+      }
+    }, [error]);
+
     const onSubmit = async (data) => {
-      console.log(data);
+      await createAccountFn(data);
     };
 
   return (
@@ -64,8 +88,8 @@ const CreateAccountDrawer = ({children}) => {
                 <SelectValue placeholder="Select Type" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="light">CURRENT</SelectItem>
-                <SelectItem value="dark">SAVINGS</SelectItem>                
+                <SelectItem value="CURRENT">CURRENT</SelectItem>
+                <SelectItem value="SAVINGS">SAVINGS</SelectItem>                
               </SelectContent>
           </Select>
             {errors.type && (
@@ -107,8 +131,15 @@ const CreateAccountDrawer = ({children}) => {
                 </Button>
             </DrawerClose>
 
-            <Button type="submit" className="flex-1">
-              Create Account
+            <Button type="submit" className="flex-1" disabled={createAccountLoading}>
+              { createAccountLoading ? (
+                <>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                Creating...
+                </>
+              ) : (
+                "Create Account"
+              )}
             </Button>
           </div>
 
