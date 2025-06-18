@@ -71,11 +71,7 @@ const AddTransactionForm = ({accounts, categories}) => {
 
   useEffect(() => {
     if (transactionResult?.success && !transactionLoading) {
-      toast.success(
-        editMode
-          ? "Transaction updated successfully"
-          : "Transaction created successfully"
-      );
+      toast.success("Transaction created successfully");
       reset();
       router.push(`/account/${transactionResult.data.accountId}`);
     }
