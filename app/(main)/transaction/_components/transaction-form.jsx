@@ -18,7 +18,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover"
 import CreateAccountDrawer from '@/components/ui/create-account-drawer';
-import { Button } from '@react-email/components';
+import { Button } from '@/components/ui//button';
 import { useFetch } from '@/hooks/use-fetch';
 import { Input } from "@/components/ui/input";
 import { format } from 'date-fns'; 
@@ -90,8 +90,8 @@ const AddTransactionForm = ({accounts, categories}) => {
                 onValueChange = {(value) => setValue("type", value)}
                 defaultValue = {type}
             >
-            <SelectTrigger className="w-[180px]">
-                <SelectValue placeholder="Theme" />
+            <SelectTrigger >
+                <SelectValue placeholder="Select type" />
             </SelectTrigger>
             <SelectContent>
                 <SelectItem value="EXPENSE">Expense</SelectItem>
@@ -125,7 +125,7 @@ const AddTransactionForm = ({accounts, categories}) => {
                 onValueChange = {(value) => setValue("accountId", value)}
                 defaultValue = {getValues("accountId")}
             >
-            <SelectTrigger className="w-[180px]">
+            <SelectTrigger>
                 <SelectValue placeholder="Select account" />
             </SelectTrigger>
             <SelectContent>
@@ -137,7 +137,7 @@ const AddTransactionForm = ({accounts, categories}) => {
             <CreateAccountDrawer>
                 <Button 
                 variant="ghost"
-                className="w-full select-none items-center text-sm outline-none"
+                className="relative flex w-full cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none hover:bg-accent hover:text-accent-foreground"
                 >Create Account</Button>
             </CreateAccountDrawer>
             </SelectContent>
@@ -155,7 +155,7 @@ const AddTransactionForm = ({accounts, categories}) => {
                 onValueChange = {(value) => setValue("category", value)}
                 defaultValue = {getValues("category")}
             >
-            <SelectTrigger className="w-[180px]">
+            <SelectTrigger>
                 <SelectValue placeholder="Select category" />
             </SelectTrigger>
             <SelectContent>
