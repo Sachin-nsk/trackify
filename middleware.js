@@ -5,6 +5,7 @@ const isProtectedRoute = createRouteMatcher([
     "/dashboard(.*)",
     "/account(.*)",
     "/transaction(.*)",
+    "/tool(.*)"
 ]);
 
 const aj = arcjet({

@@ -3,7 +3,7 @@ import {SignedIn, SignedOut, SignInButton, UserButton} from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from './ui/button';
-import {LayoutDashboard} from "lucide-react";
+import {Calculator, LayoutDashboard} from "lucide-react";
 import { PenBox } from 'lucide-react';
 import { checkUser } from '@/lib/checkUser';
 
@@ -24,6 +24,13 @@ const header = async() => {
 
         <div className='flex items-center space-x-4'>
             <SignedIn>
+                <Link href={"/tool"} className='text-gray-600 hover:text-blue-600 flex items-center gap-2'>
+                <Button variant="outline">
+                    <Calculator size={18}/>
+                <span className='hidden md:inline'>Tool</span>
+                </Button>
+                </Link>
+
                 <Link href={"/dashboard"} className='text-gray-600 hover:text-blue-600 flex items-center gap-2'>
                 <Button variant="outline">
                     <LayoutDashboard size={18}/>
