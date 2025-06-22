@@ -6,6 +6,7 @@ import { Button } from './ui/button';
 import {LayoutDashboard} from "lucide-react";
 import { PenBox } from 'lucide-react';
 import { checkUser } from '@/lib/checkUser';
+import { PieChart } from "lucide-react"; 
 
 const header = async() => {
     await checkUser();
@@ -24,6 +25,13 @@ const header = async() => {
 
         <div className='flex items-center space-x-4'>
             <SignedIn>
+                <Link href={"/tool"} className='text-gray-600 hover:text-blue-600 flex items-center gap-2'>
+                <Button variant="outline">
+                    <PieChart size={18} />
+                    <span className='hidden md:inline'>Tools</span>
+                </Button>
+                </Link>
+
                 <Link href={"/dashboard"} className='text-gray-600 hover:text-blue-600 flex items-center gap-2'>
                 <Button variant="outline">
                     <LayoutDashboard size={18}/>
@@ -37,6 +45,7 @@ const header = async() => {
                 <span className='hidden md:inline'>Add Transaction</span>
                 </Button>
                 </Link>
+                
             </SignedIn>
 
 
