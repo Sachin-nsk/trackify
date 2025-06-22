@@ -15,7 +15,6 @@ const HeroSection = () => {
 
   const features = [
     { icon: TrendingUp, text: "AI-Powered Analytics" },
-    { icon: Shield, text: "Bank-Level Security" },
     { icon: Zap, text: "Real-time Insights" },
   ];
 
@@ -113,10 +112,7 @@ const HeroSection = () => {
                 </div>
                 
                 <div className="absolute bottom-4 right-4 bg-white/90 backdrop-blur-sm rounded-lg p-3 shadow-lg animate-float z-20" style={{ animationDelay: '1s' }}>
-                  <div className="flex items-center space-x-2">
-                    <TrendingUp className="h-4 w-4 text-violet-600" />
-                    <span className="text-sm font-medium text-gray-700">+12.5% Growth</span>
-                  </div>
+                  
                 </div>
               </div>
             </div>

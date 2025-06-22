@@ -107,50 +107,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Testimonials Section */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              About This Project
-            </h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
-              The following notes describe the purpose and scope of this prototype
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {testimonialsData.map((testimonial, index) => (
-              <Card key={index} className="group hover:shadow-xl transition-all duration-300 border-0 shadow-lg bg-gradient-to-br from-white to-violet-50/30">
-                <CardContent className="p-8">
-                  <div className="flex items-center mb-6">
-                    <div className="relative">
-                      <Image 
-                        src={testimonial.image}
-                        alt={testimonial.name}
-                        width={48}
-                        height={48}
-                        className="rounded-full ring-4 ring-violet-100"
-                      />
-                    </div>
-                    <div className="ml-4">
-                      <div className="font-bold text-gray-900">{testimonial.name}</div>
-                      <div className="text-sm text-violet-600 font-medium">{testimonial.role}</div>
-                    </div>
-                  </div>
-                  <div className="flex mb-4">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="h-4 w-4 text-yellow-400 fill-current" />
-                    ))}
-                  </div>
-                  <p className="text-gray-600 leading-relaxed italic">
-                    "{testimonial.quote}"
-                  </p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
+      
 
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-br from-violet-600 via-purple-600 to-blue-600 relative overflow-hidden">
@@ -192,10 +149,7 @@ export default function Home() {
               <CheckCircle className="h-5 w-5 mr-2" />
               <span>No Credit Card Required</span>
             </div>
-            <div className="flex items-center">
-              <CheckCircle className="h-5 w-5 mr-2" />
-              <span>Bank-Level Security</span>
-            </div>
+            
           </div>
         </div>
       </section>

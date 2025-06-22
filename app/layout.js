@@ -74,17 +74,7 @@ export default function RootLayout({ children }) {
                     Empowering individuals to take control of their financial future through 
                     intelligent tracking, smart budgeting, and AI-powered insights.
                   </p>
-                  <div className="flex space-x-4">
-                    <div className="w-10 h-10 bg-gray-700 hover:bg-violet-600 rounded-lg flex items-center justify-center transition-colors cursor-pointer">
-                      <span className="text-sm font-bold">f</span>
-                    </div>
-                    <div className="w-10 h-10 bg-gray-700 hover:bg-blue-500 rounded-lg flex items-center justify-center transition-colors cursor-pointer">
-                      <span className="text-sm font-bold">t</span>
-                    </div>
-                    <div className="w-10 h-10 bg-gray-700 hover:bg-blue-600 rounded-lg flex items-center justify-center transition-colors cursor-pointer">
-                      <span className="text-sm font-bold">in</span>
-                    </div>
-                  </div>
+                 
                 </div>
 
                 {/* Quick Links */}
@@ -97,24 +87,13 @@ export default function RootLayout({ children }) {
                   </ul>
                 </div>
 
-                {/* Support */}
-                <div>
-                  <h3 className="text-lg font-bold mb-4 text-white">Support</h3>
-                  <ul className="space-y-3">
-                    <li><a href="#" className="text-gray-300 hover:text-violet-400 transition-colors">Help Center</a></li>
-                    <li><a href="#" className="text-gray-300 hover:text-violet-400 transition-colors">Privacy Policy</a></li>
-                    <li><a href="#" className="text-gray-300 hover:text-violet-400 transition-colors">Terms of Service</a></li>
-                  </ul>
-                </div>
+                
               </div>
 
               {/* Bottom Section */}
               <div className="border-t border-gray-700 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
-                <p className="text-gray-400 text-sm">
-                  © 2024 Trackify. Made with ❤️ by Sachin Kumar N
-                </p>
-                <p className="text-gray-400 text-sm mt-4 md:mt-0">
-                  Prototype for demonstration purposes
+                <p className=" text-gray-400 text-sm ">
+                  © Trackify. Made with ❤️ by Sachin Kumar N
                 </p>
               </div>
             </div>

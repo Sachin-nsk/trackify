@@ -57,7 +57,7 @@ const FireCalculator = () => {
   return (
     <Card className="max-w-3xl mx-auto p-6 mt-10">
       <CardHeader>
-        <CardTitle>FIRE Calculator</CardTitle>
+        <CardTitle>🔥FIRE Calculator</CardTitle>
       </CardHeader>
       <CardContent className="space-y-6">
         <div className="grid md:grid-cols-2 gap-4">
