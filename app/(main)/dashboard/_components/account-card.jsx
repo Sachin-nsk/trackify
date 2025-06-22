@@ -1,77 +1,138 @@
 "use client";
 
-import React from 'react'
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import React, { useEffect } from 'react';
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Switch } from '@/components/ui/switch';
-import { ArrowUpRight, ArrowDownRight } from 'lucide-react';
+import { ArrowUpRight, ArrowDownRight, Star, TrendingUp } from 'lucide-react';
 import Link from 'next/link';
 import { useFetch } from '@/hooks/use-fetch';
-import { updateDefaultAccount} from '@/actions/account';
+import { updateDefaultAccount } from '@/actions/account';
 import { toast } from 'sonner';
-import { useEffect } from 'react';
-
+import { cn } from '@/lib/utils';
 
 const AccountCard = ({ account }) => {
-    const {name, type, balance, id, isDefault } = account;
+  const { name, type, balance, id, isDefault } = account;
 
-    const{
-        loading: updateDefaultLoading,
-        fn: updateDefaultFn,
-        data: updatedAccount,
-        error,
-    } = useFetch(updateDefaultAccount);
+  const {
+    loading: updateDefaultLoading,
+    fn: updateDefaultFn,
+    data: updatedAccount,
+    error,
+  } = useFetch(updateDefaultAccount);
 
-    const handleDefaultChange = async (event) => {
-        event.preventDefault();
+  const handleDefaultChange = async (event) => {
+    event.preventDefault();
 
-        if(isDefault){
-            toast.warning("You need atleast 1 default account");
-            return;
-        }
+    if (isDefault) {
+      toast.warning("You need at least 1 default account");
+      return;
+    }
 
-        await updateDefaultFn(id);
-    };
+    await updateDefaultFn(id);
+  };
 
-    useEffect(() => {
-        if(updatedAccount?.success){
-            toast.success("Default account updated successfully");
-        }
-    }, [updatedAccount, updateDefaultLoading]);
+  useEffect(() => {
+    if (updatedAccount?.success) {
+      toast.success("Default account updated successfully");
+    }
+  }, [updatedAccount, updateDefaultLoading]);
 
-    useEffect(() => {
-        if(error){
-            toast.error(error.message || "Failed to update default account");
-        }
-    }, [error]);
+  useEffect(() => {
+    if (error) {
+      toast.error(error.message || "Failed to update default account");
+    }
+  }, [error]);
+
+  const formatBalance = (balance) => {
+    return new Intl.NumberFormat('en-IN', {
+      style: 'currency',
+      currency: 'INR',
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0,
+    }).format(parseFloat(balance));
+  };
 
   return (
-    <Card className="hover:shadow-md transition-shadow group relative">
-        <Link href={`/account/${id}`}>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium capitalize">{name}</CardTitle>
-                <Switch checked={isDefault} onClick={handleDefaultChange} disabled={updateDefaultLoading}/>
-            </CardHeader>
-            <CardContent>
-                <div className="text-2xl font-bold">
-                    ₹{parseFloat(balance).toFixed(2)}
-                </div>
-                <p className="text-xs text-muted-foreground capitalize">
-                    {type} Account
-                </p>
-            </CardContent>
-            <CardFooter className="flex justify-between text-sm text-muted-foreground">
-                <div className='flex items-center'>
-                    <ArrowUpRight className="mr-1 h-4 w-4 text-green-500" />
-                    Income
-                </div>
-                <div className='flex items-center'>
-                    <ArrowDownRight className="mr-1 h-4 w-4 text-red-500" />
-                    Expense
-                </div>
-            </CardFooter>
-  </Link>
-</Card>
-  )
-}
+    <Card className={cn(
+      "group relative overflow-hidden transition-all duration-300 hover:shadow-xl hover:scale-105 border-0",
+      isDefault 
+        ? "bg-gradient-to-br from-violet-50 to-blue-50 shadow-lg ring-2 ring-violet-200" 
+        : "bg-gradient-to-br from-white to-gray-50/50 shadow-md hover:shadow-lg"
+    )}>
+      <Link href={`/account/${id}`}>
+        {/* Default Badge */}
+        {isDefault && (
+          <div className="absolute top-3 right-3 z-10">
+            <div className="flex items-center px-2 py-1 bg-gradient-to-r from-violet-500 to-blue-500 text-white text-xs font-medium rounded-full shadow-sm">
+              <Star className="h-3 w-3 mr-1 fill-current" />
+              Default
+            </div>
+          </div>
+        )}
 
-export default AccountCard
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-violet-400 to-blue-400 rounded-full blur-3xl transform translate-x-16 -translate-y-16"></div>
+        </div>
+
+        <CardHeader className="relative z-10 flex flex-row items-center justify-between space-y-0 pb-3">
+          <div className="flex items-center space-x-3">
+            <div className={cn(
+              "w-10 h-10 rounded-xl flex items-center justify-center text-white font-bold text-sm shadow-lg",
+              type === 'SAVINGS' 
+                ? "bg-gradient-to-br from-green-500 to-emerald-500" 
+                : "bg-gradient-to-br from-blue-500 to-cyan-500"
+            )}>
+              {type === 'SAVINGS' ? 'S' : 'C'}
+            </div>
+            <div>
+              <CardTitle className="text-lg font-bold text-gray-900 capitalize group-hover:text-violet-700 transition-colors">
+                {name}
+              </CardTitle>
+              <p className="text-sm text-gray-500 capitalize font-medium">
+                {type.toLowerCase()} Account
+              </p>
+            </div>
+          </div>
+          
+          <Switch 
+            checked={isDefault} 
+            onClick={handleDefaultChange} 
+            disabled={updateDefaultLoading}
+            className="data-[state=checked]:bg-violet-500"
+          />
+        </CardHeader>
+
+        <CardContent className="relative z-10 pb-4">
+          <div className="space-y-2">
+            <div className="flex items-baseline space-x-2">
+              <div className="text-2xl md:text-3xl font-bold text-gray-900 group-hover:text-violet-700 transition-colors">
+                {formatBalance(balance)}
+              </div>
+              <TrendingUp className="h-4 w-4 text-green-500" />
+            </div>
+            <div className="flex items-center text-sm text-gray-500">
+              <span>Available Balance</span>
+            </div>
+          </div>
+        </CardContent>
+
+        <CardFooter className="relative z-10 flex justify-between text-sm pt-4 border-t border-gray-100">
+          <div className='flex items-center space-x-1 text-green-600 font-medium'>
+            <ArrowUpRight className="h-4 w-4" />
+            <span>Income</span>
+          </div>
+          <div className='flex items-center space-x-1 text-red-500 font-medium'>
+            <ArrowDownRight className="h-4 w-4" />
+            <span>Expense</span>
+          </div>
+        </CardFooter>
+
+        {/* Hover Effect Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-br from-violet-500/5 to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl"></div>
+      </Link>
+    </Card>
+  );
+};
+
+export default AccountCard;

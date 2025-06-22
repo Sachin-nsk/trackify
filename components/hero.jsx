@@ -1,45 +1,130 @@
 "use client";
 
-import React from 'react'
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { Button } from './ui/button';
 import Image from 'next/image';
+import { ArrowRight, Sparkles, TrendingUp, Shield, Zap } from 'lucide-react';
 
 const HeroSection = () => {
+  const [isVisible, setIsVisible] = useState(false);
 
-    
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
+
+  const features = [
+    { icon: TrendingUp, text: "AI-Powered Analytics" },
+    { icon: Shield, text: "Bank-Level Security" },
+    { icon: Zap, text: "Real-time Insights" },
+  ];
+
   return (
-    <div className='pb-20 px-4'>
-        <div className='container mx-auto text-center'>
-            <h1 className='text-5xl md:text-8xl lg:text-[105px] pb-6 gradient-title'>
-                Manage Your Finances
-            </h1>
-            <p className='text-xl text-grap-600 mb-8 max-w-2xl mx-auto'>
-                Smart finance tracking powered by AI -- get real-time insights,
-                expense analytics, and spending optimization.
-            </p>
-            <div className='flex-justify-center space-x-4'>
-                <Link href="/dashboard">
-                    <Button size="lg" className="px-8">
-                        Get Started
-                    </Button>
-                </Link>
-            </div>
-            <div className='flex justify-center mt-10'>
-              <div className='hero-image-wrapper rounded-3xl shadow-2xl border-4 border-white dark:border-gray-800 overflow-hidden transform transition-transform duration-500 hover:scale-105 bg-white/70 dark:bg-black/40 backdrop-blur-lg max-w-3xl w-full'>
+    <div className='relative min-h-screen flex items-center justify-center overflow-hidden'>
+      {/* Background Elements */}
+      <div className="absolute inset-0 bg-gradient-to-br from-violet-50 via-blue-50 to-purple-50" />
+      
+      {/* Animated Background Shapes */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-violet-400/20 to-purple-400/20 rounded-full blur-3xl animate-float" />
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-br from-blue-400/20 to-cyan-400/20 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }} />
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-br from-purple-400/10 to-pink-400/10 rounded-full blur-3xl animate-pulse-slow" />
+      </div>
+
+      <div className='relative z-10 container mx-auto px-4 text-center'>
+        <div className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          {/* Badge */}
+          <div className="inline-flex items-center px-4 py-2 rounded-full bg-white/80 backdrop-blur-sm border border-violet-200/50 shadow-lg mb-8">
+            <Sparkles className="h-4 w-4 text-violet-600 mr-2" />
+            <span className="text-sm font-medium text-violet-700">AI-Powered Financial Management</span>
+          </div>
+
+          {/* Main Heading */}
+          <h1 className='text-5xl md:text-7xl lg:text-8xl font-extrabold mb-6 leading-tight'>
+            <span className="block">Manage Your</span>
+            <span className="block gradient-title">Finances</span>
+            <span className="block text-gray-700">Intelligently</span>
+          </h1>
+
+          {/* Subtitle */}
+          <p className='text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed'>
+            Transform your financial life with AI-powered insights, smart budgeting, 
+            and real-time expense tracking that adapts to your lifestyle.
+          </p>
+
+          {/* Feature Pills */}
+          <div className="flex flex-wrap justify-center gap-4 mb-10">
+            {features.map((feature, index) => (
+              <div 
+                key={index}
+                className="flex items-center px-4 py-2 bg-white/60 backdrop-blur-sm rounded-full border border-gray-200/50 shadow-sm"
+                style={{ animationDelay: `${index * 0.2}s` }}
+              >
+                <feature.icon className="h-4 w-4 text-violet-600 mr-2" />
+                <span className="text-sm font-medium text-gray-700">{feature.text}</span>
+              </div>
+            ))}
+          </div>
+
+          {/* CTA Buttons */}
+          <div className='flex flex-col sm:flex-row justify-center gap-4 mb-16'>
+            <Link href="/dashboard">
+              <Button 
+                size="lg" 
+                className="px-8 py-4 text-lg bg-gradient-to-r from-violet-600 to-blue-600 hover:from-violet-700 hover:to-blue-700 text-white shadow-xl hover:shadow-2xl transition-all duration-300 group"
+              >
+                Get Started Free
+                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+              </Button>
+            </Link>
+            <Link href="#features">
+              <Button 
+                variant="outline" 
+                size="lg" 
+                className="px-8 py-4 text-lg border-2 border-violet-200 hover:border-violet-300 hover:bg-violet-50 transition-all duration-300"
+              >
+                Learn More
+              </Button>
+            </Link>
+          </div>
+
+          {/* Hero Image */}
+          <div className='flex justify-center'>
+            <div className={`hero-image-wrapper transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
+              <div className='relative rounded-3xl shadow-2xl border-4 border-white/50 overflow-hidden transform hover:scale-105 transition-transform duration-700 bg-white/20 backdrop-blur-lg max-w-4xl w-full'>
+                {/* Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-br from-violet-500/10 via-transparent to-blue-500/10 z-10" />
+                
                 <Image 
                   src="/banner3.jpg" 
-                  width={900} 
-                  height={600}
-                  alt="Finance Dashboard Illustration"
-                  className='w-full h-auto object-cover rounded-3xl transition-transform duration-700 ease-in-out scale-100 hover:scale-105' 
+                  width={1200} 
+                  height={800}
+                  alt="Finance Dashboard Preview"
+                  className='w-full h-auto object-cover rounded-3xl' 
                   priority
                 />
+                
+                {/* Floating Elements */}
+                <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm rounded-lg p-3 shadow-lg animate-float z-20">
+                  <div className="flex items-center space-x-2">
+                    <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                    <span className="text-sm font-medium text-gray-700">Live Updates</span>
+                  </div>
+                </div>
+                
+                <div className="absolute bottom-4 right-4 bg-white/90 backdrop-blur-sm rounded-lg p-3 shadow-lg animate-float z-20" style={{ animationDelay: '1s' }}>
+                  <div className="flex items-center space-x-2">
+                    <TrendingUp className="h-4 w-4 text-violet-600" />
+                    <span className="text-sm font-medium text-gray-700">+12.5% Growth</span>
+                  </div>
+                </div>
               </div>
             </div>
+          </div>
         </div>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default HeroSection
+export default HeroSection;
