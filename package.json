@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@arcjet/next": "^1.0.0-beta.8",
-    "@bufbuild/protobuf": "1.2.0",
+    "@bufbuild/protobuf": "^1.10.0",
     "@clerk/nextjs": "^6.9.0",
     "@google/generative-ai": "^0.24.1",
     "@hookform/resolvers": "^5.0.1",
