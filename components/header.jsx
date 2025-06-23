@@ -33,13 +33,9 @@ const Header = () => {
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2 group">
             <div className="relative">
-              <Image 
-                src="/logo.jpg"
-                alt="Trackify Logo"
-                height={48}
-                width={48}
-                className='h-12 w-12 rounded-xl object-contain transition-transform group-hover:scale-105'
-              />
+            <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-xl flex items-center justify-center">
+                  <span className="text-white font-bold text-lg">T</span>
+              </div>
               <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-emerald-600/20 to-teal-600/20 opacity-0 group-hover:opacity-100 transition-opacity" />
             </div>
             <span className="text-xl font-bold text-gradient hidden sm:block">

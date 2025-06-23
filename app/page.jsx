@@ -7,8 +7,14 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { ArrowRight, Star, CheckCircle } from "lucide-react";
+import { checkUser } from "@/lib/checkUser";
 
-export default function Home() {
+export default async function Home() {
+  const user = await checkUser();
+  if (!user) {
+    // redirect to sign-in or show error
+  }
+
   return (
     <div className="mt-20">
       <HeroSection />
@@ -131,7 +137,7 @@ export default function Home() {
             <Button 
               variant="outline" 
               size="lg" 
-              className="px-8 py-4 text-lg border-2 border-white text-white hover:bg-white hover:text-emerald-600 transition-all duration-300"
+              className="px-8 py-4 text-lg border-2 border-emerald-700 text-emerald-700 dark:border-white dark:text-white hover:bg-white hover:text-emerald-600 transition-all duration-300"
             >
               Learn More
             </Button>

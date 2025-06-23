@@ -32,11 +32,7 @@ const HeroSection = () => {
 
       <div className='relative z-10 container mx-auto px-4 text-center'>
         <div className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          {/* Badge */}
-          <div className="inline-flex items-center px-4 py-2 rounded-full bg-card/80 backdrop-blur-sm border border-border shadow-lg mb-8">
-            <Sparkles className="h-4 w-4 text-primary mr-2" />
-            <span className="text-sm font-medium text-primary">AI-Powered Financial Management</span>
-          </div>
+
 
           {/* Main Heading */}
           <h1 className='text-5xl md:text-7xl lg:text-8xl font-extrabold mb-6 leading-tight'>
