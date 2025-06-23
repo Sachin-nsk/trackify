@@ -7,6 +7,7 @@ import Link from "next/link";
 import { Button } from './ui/button';
 import { LayoutDashboard, PenBox, PieChart, Menu, X } from "lucide-react";
 import { cn } from '@/lib/utils';
+import { ThemeToggle } from './theme-toggle';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -24,8 +25,8 @@ const Header = () => {
     <header className={cn(
       "fixed top-0 w-full z-50 transition-all duration-300",
       isScrolled 
-        ? "bg-white/95 backdrop-blur-md shadow-lg border-b border-gray-200/50" 
-        : "bg-white/80 backdrop-blur-sm"
+        ? "bg-background/95 backdrop-blur-md shadow-lg border-b border-border" 
+        : "bg-background/80 backdrop-blur-sm"
     )}>
       <nav className='container mx-auto px-4 py-4'>
         <div className="flex items-center justify-between">
@@ -39,7 +40,7 @@ const Header = () => {
                 width={48}
                 className='h-12 w-12 rounded-xl object-contain transition-transform group-hover:scale-105'
               />
-              <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-violet-600/20 to-blue-600/20 opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-emerald-600/20 to-teal-600/20 opacity-0 group-hover:opacity-100 transition-opacity" />
             </div>
             <span className="text-xl font-bold text-gradient hidden sm:block">
               Trackify
@@ -50,21 +51,21 @@ const Header = () => {
           <div className='hidden md:flex items-center space-x-2'>
             <SignedIn>
               <Link href="/tool">
-                <Button variant="ghost" className="group hover:bg-violet-50 hover:text-violet-700 transition-colors">
+                <Button variant="ghost" className="group hover:bg-accent hover:text-accent-foreground transition-colors">
                   <PieChart className="h-4 w-4 mr-2 group-hover:rotate-12 transition-transform" />
                   <span>Tools</span>
                 </Button>
               </Link>
 
               <Link href="/dashboard">
-                <Button variant="ghost" className="group hover:bg-blue-50 hover:text-blue-700 transition-colors">
+                <Button variant="ghost" className="group hover:bg-accent hover:text-accent-foreground transition-colors">
                   <LayoutDashboard className="h-4 w-4 mr-2 group-hover:scale-110 transition-transform" />
                   <span>Dashboard</span>
                 </Button>
               </Link>
 
               <Link href="/transaction/create">
-                <Button className="bg-gradient-to-r from-violet-600 to-blue-600 hover:from-violet-700 hover:to-blue-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 group">
+                <Button className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-300 group">
                   <PenBox className="h-4 w-4 mr-2 group-hover:rotate-12 transition-transform" />
                   <span>Add Transaction</span>
                 </Button>
@@ -79,12 +80,14 @@ const Header = () => {
               </SignInButton>
             </SignedOut>
 
+            <ThemeToggle />
+
             <SignedIn>
               <div className="ml-2">
                 <UserButton 
                   appearance={{
                     elements: {
-                      avatarBox: "w-10 h-10 rounded-full ring-2 ring-violet-200 hover:ring-violet-300 transition-all"
+                      avatarBox: "w-10 h-10 rounded-full ring-2 ring-primary/20 hover:ring-primary/30 transition-all"
                     }
                   }}
                 />
@@ -94,11 +97,12 @@ const Header = () => {
 
           {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center space-x-2">
+            <ThemeToggle />
             <SignedIn>
               <UserButton 
                 appearance={{
                   elements: {
-                    avatarBox: "w-8 h-8 rounded-full ring-2 ring-violet-200"
+                    avatarBox: "w-8 h-8 rounded-full ring-2 ring-primary/20"
                   }
                 }}
               />
@@ -107,7 +111,7 @@ const Header = () => {
               variant="ghost"
               size="icon"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="hover:bg-violet-50"
+              className="hover:bg-accent"
             >
               {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </Button>
@@ -116,25 +120,25 @@ const Header = () => {
 
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <div className="md:hidden mt-4 pb-4 border-t border-gray-200/50">
+          <div className="md:hidden mt-4 pb-4 border-t border-border">
             <div className="flex flex-col space-y-2 pt-4">
               <SignedIn>
                 <Link href="/tool" onClick={() => setIsMobileMenuOpen(false)}>
-                  <Button variant="ghost" className="w-full justify-start hover:bg-violet-50">
+                  <Button variant="ghost" className="w-full justify-start hover:bg-accent">
                     <PieChart className="h-4 w-4 mr-2" />
                     Tools
                   </Button>
                 </Link>
 
                 <Link href="/dashboard" onClick={() => setIsMobileMenuOpen(false)}>
-                  <Button variant="ghost" className="w-full justify-start hover:bg-blue-50">
+                  <Button variant="ghost" className="w-full justify-start hover:bg-accent">
                     <LayoutDashboard className="h-4 w-4 mr-2" />
                     Dashboard
                   </Button>
                 </Link>
 
                 <Link href="/transaction/create" onClick={() => setIsMobileMenuOpen(false)}>
-                  <Button className="w-full bg-gradient-to-r from-violet-600 to-blue-600 text-white">
+                  <Button className="w-full bg-primary text-primary-foreground">
                     <PenBox className="h-4 w-4 mr-2" />
                     Add Transaction
                   </Button>

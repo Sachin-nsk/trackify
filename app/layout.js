@@ -3,6 +3,7 @@ import "./globals.css";
 import Header from "@/components/header";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Toaster } from "sonner";
+import { ThemeProvider } from "@/components/theme-provider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -28,76 +29,84 @@ export const metadata = {
     description: "AI-powered financial platform for intelligent expense tracking and budgeting",
   },
   viewport: "width=device-width, initial-scale=1",
-  themeColor: "#8b5cf6",
+  themeColor: "#059669",
 };
 
 export default function RootLayout({ children }) {
   return (
     <ClerkProvider>
-      <html lang="en" className={inter.variable}>
+      <html lang="en" className={inter.variable} suppressHydrationWarning>
         <body className={`${inter.className} antialiased`}>
-          {/* Header */}
-          <Header />
-          
-          {/* Main Content */}
-          <main className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-50">
-            {children}
-          </main>
-          
-          {/* Toast Notifications */}
-          <Toaster 
-            richColors 
-            position="top-right"
-            toastOptions={{
-              style: {
-                background: 'white',
-                border: '1px solid #e5e7eb',
-                borderRadius: '12px',
-                fontSize: '14px',
-              },
-            }}
-          />
-          
-          {/* Footer */}
-          <footer className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white py-16">
-            <div className="container mx-auto px-4">
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-                {/* Brand Section */}
-                <div className="md:col-span-2">
-                  <div className="flex items-center space-x-3 mb-6">
-                    <div className="w-10 h-10 bg-gradient-to-br from-violet-500 to-blue-500 rounded-xl flex items-center justify-center">
-                      <span className="text-white font-bold text-lg">T</span>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {/* Header */}
+            <Header />
+            
+            {/* Main Content */}
+            <main className="min-h-screen bg-background">
+              {children}
+            </main>
+            
+            {/* Toast Notifications */}
+            <Toaster 
+              richColors 
+              position="top-right"
+              toastOptions={{
+                style: {
+                  background: 'hsl(var(--background))',
+                  border: '1px solid hsl(var(--border))',
+                  borderRadius: '12px',
+                  fontSize: '14px',
+                  color: 'hsl(var(--foreground))',
+                },
+              }}
+            />
+            
+            {/* Footer */}
+            <footer className="bg-card border-t">
+              <div className="container mx-auto px-4 py-16">
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+                  {/* Brand Section */}
+                  <div className="md:col-span-2">
+                    <div className="flex items-center space-x-3 mb-6">
+                      <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-xl flex items-center justify-center">
+                        <span className="text-white font-bold text-lg">T</span>
+                      </div>
+                      <span className="text-2xl font-bold text-gradient">Trackify</span>
                     </div>
-                    <span className="text-2xl font-bold text-gradient">Trackify</span>
+                    <p className="text-muted-foreground mb-6 max-w-md leading-relaxed">
+                      Empowering individuals to take control of their financial future through 
+                      intelligent tracking, smart budgeting, and AI-powered insights.
+                    </p>
+                   
                   </div>
-                  <p className="text-gray-300 mb-6 max-w-md leading-relaxed">
-                    Empowering individuals to take control of their financial future through 
-                    intelligent tracking, smart budgeting, and AI-powered insights.
+
+                  {/* Quick Links */}
+                  <div>
+                    <h3 className="text-lg font-bold mb-4">Quick Links</h3>
+                    <ul className="space-y-3">
+                      <li><a href="/dashboard" className="text-muted-foreground hover:text-primary transition-colors">Dashboard</a></li>
+                      <li><a href="/tool" className="text-muted-foreground hover:text-primary transition-colors">Financial Tools</a></li>
+                      <li><a href="/transaction/create" className="text-muted-foreground hover:text-primary transition-colors">Add Transaction</a></li>
+                    </ul>
+                  </div>
+
+                  
+                </div>
+
+                {/* Bottom Section */}
+                <div className="border-t border-border mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                  <p className="text-muted-foreground text-sm">
+                    © Trackify. Made with ❤️ by Sachin Kumar N
                   </p>
-                 
                 </div>
-
-                {/* Quick Links */}
-                <div>
-                  <h3 className="text-lg font-bold mb-4 text-white">Quick Links</h3>
-                  <ul className="space-y-3">
-                    <li><a href="/dashboard" className="text-gray-300 hover:text-violet-400 transition-colors">Dashboard</a></li>
-                    <li><a href="/tool" className="text-gray-300 hover:text-violet-400 transition-colors">Financial Tools</a></li>
-                    <li><a href="/transaction/create" className="text-gray-300 hover:text-violet-400 transition-colors">Add Transaction</a></li>
-                  </ul>
-                </div>
-
-                
               </div>
-
-              {/* Bottom Section */}
-              <div className="border-t border-gray-700 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
-                <p className=" text-gray-400 text-sm ">
-                  © Trackify. Made with ❤️ by Sachin Kumar N
-                </p>
-              </div>
-            </div>
-          </footer>
+            </footer>
+          </ThemeProvider>
         </body>
       </html>
     </ClerkProvider>
