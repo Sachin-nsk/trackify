@@ -96,5 +96,8 @@ npx prisma generate
 npm run dev
 ```
 
+## 🧑‍💻 Author
+Sachin Kumar N
+
 
 
