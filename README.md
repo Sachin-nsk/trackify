@@ -4,7 +4,6 @@ Trackify is a full-stack, AI-powered finance tracking application that helps use
 
 Deployed with Docker on Google Cloud Run and built using modern tools like Next.js, Prisma, Clerk, and Supabase, Trackify is designed for speed, scalability, and simplicity.
 
----
 
 ---
 ## Screenshots
@@ -67,6 +66,7 @@ npm install --legacy-peer-deps
 
 ### 3️⃣ Set environment variables
 Create a .env file:
+```bash
 # Clerk Auth
 NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
 CLERK_SECRET_KEY=
@@ -83,6 +83,7 @@ RESEND_API_KEY=
 
 # Optional: Arcjet API key (if used for edge security)
 ARCJET_KEY=
+```
 
 
 ### 4️⃣ Generate Prisma client
